@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: monolit
+  cloud:
+    config:
+      uri: http://localhost:8095
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: DEBUG
+

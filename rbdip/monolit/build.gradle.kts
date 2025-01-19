@@ -1,5 +1,5 @@
 plugins {
-    id("org.springframework.boot") version "3.1.5"
+    id("org.springframework.boot") version "3.3.4"
     id("io.spring.dependency-management") version "1.1.3"
     id("java")
 }
@@ -9,6 +9,12 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:2023.0.3")
+    }
 }
 
 dependencies {
@@ -36,6 +42,10 @@ dependencies {
 
     // Rabbit
     implementation("org.springframework.boot:spring-boot-starter-amqp")
+
+    // Cloud
+    implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
+    implementation("org.springframework.cloud:spring-cloud-starter-config")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
