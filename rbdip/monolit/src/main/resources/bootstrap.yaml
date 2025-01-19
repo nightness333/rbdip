@@ -3,7 +3,7 @@ spring:
     name: monolit
   cloud:
     config:
-      uri: http://config-server:8095
+      uri: http://0.0.0.0:8095
 
 server:
   port: 8080
