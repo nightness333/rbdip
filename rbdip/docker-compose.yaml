@@ -41,7 +41,7 @@ services:
 
 
   monolit-2:
-    build: ./
+    build: ./monolit
     container_name: monolit
     ports:
       - "8081:8080"
@@ -49,7 +49,7 @@ services:
       - rbdip-network
 
   monolit-3:
-    build: ./
+    build: ./monolit
     container_name: monolit
     ports:
       - "8082:8080"
