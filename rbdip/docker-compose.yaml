@@ -32,13 +32,13 @@ services:
       - rbdip-network
 
   monolit-1:
+
     build: ./monolit
     container_name: monolit
     ports:
       - "8080:8080"
     networks:
       - rbdip-network
-
 
   monolit-2:
     build: ./monolit
