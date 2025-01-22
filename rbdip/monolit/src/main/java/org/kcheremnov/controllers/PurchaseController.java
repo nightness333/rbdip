@@ -3,10 +3,8 @@ package org.kcheremnov.controllers;
 import org.kcheremnov.entities.User;
 import org.kcheremnov.services.PurchaseService;
 import org.kcheremnov.services.UserService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,10 +33,5 @@ public class PurchaseController {
         Long newBalance = purchaseService.makePurchase(user);
 
         return ResponseEntity.ok(newBalance);
-    }
-
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleException(Exception ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 }

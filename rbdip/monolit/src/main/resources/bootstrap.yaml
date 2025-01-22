@@ -1,27 +1,9 @@
-#spring:
-#  application:
-#    name: monolit
-#  cloud:
-#    config:
-#      uri: http://0.0.0.0:8095
-
 spring:
-  datasource:
-    url: jdbc:postgresql://0.0.0.0:5432/postgres
-    username: postgres
-    password: postgres
-    driver-class-name: org.postgresql.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate.format_sql: true
-      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
-  rabbitmq:
-    host: 0.0.0.0
-    port: 5672
-    username: user
-    password: password
+  application:
+    name: monolit
+  cloud:
+    config:
+      uri: http://0.0.0.0:8095
 
 server:
   port: 8080
