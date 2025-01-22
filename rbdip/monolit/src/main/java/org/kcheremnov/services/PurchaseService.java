@@ -14,22 +14,20 @@ public class PurchaseService {
 
     private final UserRepository userRepository;
     private final CartRepository cartRepository;
-    private final CartService cartService;
 
     public PurchaseService(
             UserRepository userRepository,
-            CartRepository cartRepository,
-            CartService cartService
+            CartRepository cartRepository
     ) {
         this.userRepository = userRepository;
         this.cartRepository = cartRepository;
-        this.cartService = cartService;
     }
 
     public Long makePurchase(User user) {
         Long balance = user.getBalance();
 
-        List<Item> items = user.getCart().getItems();
+        Cart cart = user.getCart();
+        List<Item> items = cart.getItems();
 
         Long sum = 0L;
 
@@ -41,12 +39,12 @@ public class PurchaseService {
             throw new IllegalArgumentException("Not enough money");
         }
 
+        items.clear();
+        cart.setItems(items);
+
         user.setBalance(balance - sum);
-        Cart cart = user.getCart();
-
-        cart.setItems(List.of());
-
         userRepository.save(user);
+
         cartRepository.save(cart);
 
         return balance - sum;

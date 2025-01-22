@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  monolit:
+    build: ./
+    container_name: monolit
+    ports:
+      - "8080:8080"
+    networks:
+      - rbdip-network
+
+networks:
+  rbdip-network:
+    external: true

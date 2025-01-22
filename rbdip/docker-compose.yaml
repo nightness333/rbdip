@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  postgres-monolit:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - rbdip-network
+
+  config-server:
+    build: ./config-server
+    container_name: config-server
+    ports:
+      - "8095:8095"
+    networks:
+      - rbdip-network
+
+  rabbitmq:
+    image: rabbitmq:3.13.3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: user
+      RABBITMQ_DEFAULT_PASS: password
+    networks:
+      - rbdip-network
+
+  monolit-1:
+
+    build: ./monolit
+    container_name: monolit
+    ports:
+      - "8080:8080"
+    networks:
+      - rbdip-network
+
+  monolit-2:
+    build: ./monolit
+    container_name: monolit
+    ports:
+      - "8081:8080"
+    networks:
+      - rbdip-network
+
+  monolit-3:
+    build: ./monolit
+    container_name: monolit
+    ports:
+      - "8082:8080"
+    networks:
+      - rbdip-network
+
+  nginx:
+    build:
+      context: ./
+    ports:
+      - "1111:1111"
+    networks:
+      - rbdip-network
+
+networks:
+  rbdip-network:
+    external: true
