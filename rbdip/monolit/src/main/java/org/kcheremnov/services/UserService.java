@@ -48,9 +48,9 @@ public class UserService {
         newUser.setPassword(passwordEncoder.encode(password));
         newUser.setLogin(login);
 
-//        Cart cart = new Cart();
-//
-//        newUser.setCart(cart);
+        Cart cart = new Cart();
+
+        newUser.setCart(cart);
 
         return userRepository.save(newUser);
     }
