@@ -51,10 +51,8 @@ public class CartService {
     public void deleteItemFromCart(Long itemId, User user) {
         Item item;
 
-        System.out.println(itemId + " delete");
-
         try {
-            item = itemsRepository.findById(itemId).get();
+            item = itemsRepository.getReferenceById(itemId);
         } catch (Exception ex) {
             throw new IllegalArgumentException("No such item");
         }
